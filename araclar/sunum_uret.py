@@ -286,6 +286,11 @@ def footer_logo(s):
     kent_logo(s, 8.75, 6.62, 0.5)
 
 
+# The cover layout plays a background video in which a red tulip grows over the right ~40 % of the
+# slide, so everything on the cover and closing slides stays inside the left zone (x < 8 in).
+ZONE_W = 6.9
+
+
 def build_title(s, c):
     for sh in s.shapes:
         if not sh.has_text_frame:
@@ -295,18 +300,18 @@ def build_title(s, c):
             sh.text_frame.paragraphs[0].runs[0].text = c["title"]
             sh.text_frame.word_wrap = True
             sh.text_frame.auto_size = MSO_AUTO_SIZE.NONE
-            sh.top = Inches(2.8); sh.width = Inches(10.8); sh.height = Inches(0.9)
+            sh.top = Inches(2.72); sh.width = Inches(ZONE_W); sh.height = Inches(0.85)
         elif t == "Subtitle":
             sh.text_frame.word_wrap = True
             sh.text_frame.auto_size = MSO_AUTO_SIZE.NONE
-            sh.width = Inches(10.8); sh.top = Inches(3.75); sh.height = Inches(1.0)
+            sh.width = Inches(ZONE_W); sh.top = Inches(3.52); sh.height = Inches(1.15)
             r = sh.text_frame.paragraphs[0].runs[0]
-            r.text = c["sub"]; r.font.size = Pt(22)
-    kent_logo(s, 8.3, 1.05, 1.32)
-    tb(s, "Presenter", 1.14, 4.95, 10.8, 1.0,
-       [(c["presenter"][0], dict(bold=True, size=18, color=BLUE)),
-        c["presenter"][1], c["presenter"][2]], size=14, color=INK, space_after=2)
-    tb(s, "Event", 1.14, 5.95, 10.8, 0.35, [c["event"]], size=12, color=MUTED)
+            r.text = c["sub"]; r.font.size = Pt(20)
+    kent_logo(s, 1.14, 4.82, 0.95)
+    tb(s, "Presenter", 3.65, 4.78, 4.35, 1.05,
+       [(c["presenter"][0], dict(bold=True, size=16, color=BLUE))] + c["presenter"][1].split(" · ") + [c["presenter"][2]],
+       size=12, color=INK, space_after=1, anchor=MSO_ANCHOR.MIDDLE)
+    tb(s, "Event", 1.14, 6.02, 7.0, 0.3, [c["event"]], size=11, color=MUTED)
 
 
 def build_thanks(s, c):
@@ -315,14 +320,13 @@ def build_thanks(s, c):
             sh.text_frame.paragraphs[0].runs[0].text = c["thanks"]
             sh.text_frame.word_wrap = True
             sh.text_frame.auto_size = MSO_AUTO_SIZE.NONE
-            sh.top = Inches(2.8); sh.width = Inches(10.8); sh.height = Inches(0.9)
-    kent_logo(s, 8.3, 1.05, 1.32)
-    tb(s, "Closing text", 1.14, 3.8, 10.8, 0.8, [c["text"]], size=16, color=INK)
-    tb(s, "Motto", 1.14, 4.6, 10.8, 0.5, [c["motto"]], size=20, color=GREEN, bold=True,
-       font=HEAD_FONT)
-    tb(s, "Signature", 1.14, 5.2, 10.8, 1.0,
+            sh.top = Inches(2.72); sh.width = Inches(ZONE_W); sh.height = Inches(0.85)
+    tb(s, "Closing text", 1.14, 3.6, ZONE_W, 0.7, [c["text"]], size=15, color=INK)
+    tb(s, "Motto", 1.14, 4.32, ZONE_W, 0.45, [c["motto"]], size=17, color=GREEN, bold=True, font=HEAD_FONT)
+    kent_logo(s, 1.14, 5.02, 0.95)
+    tb(s, "Signature", 3.65, 4.98, 4.35, 1.05,
        [(c["sig"][0], dict(bold=True, color=BLUE, size=16)), c["sig"][1], c["sig"][2]],
-       size=14, space_after=2)
+       size=12, space_after=1, anchor=MSO_ANCHOR.MIDDLE)
 
 
 def build_s2(s, c):
