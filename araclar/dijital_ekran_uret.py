@@ -66,12 +66,12 @@ KENT = f"{LOGOS}/kent_logo_lacivert_kirmizi_crop.png"
 QR = f"{WORK}/png/qr.png"
 
 X0, CW4, G4 = 0.55, 2.87, 0.25
-TILES = [("1", "Youth Model", BLUE, "icon_model"), ("3+", "Climate solutions", GREEN, "icon_bulb"),
-         ("1", "Practical guide", LBLUE, "icon_guide"), ("3", "Partner countries", RED, "icon_network")]
-ROWS3 = [("İMECE Circles", "Small, voluntary learning teams", "icon_model"),
-         ("Shared knowledge", "Local experience meets science", "icon_venn"),
-         ("Online exchange", "Türkiye, Algeria, India", "icon_network")]
-IMPACT = ["Youth become solution partners", "Local knowledge meets science", "A model others can adopt"]
+TILES = [("1", ["Climate İMECE", "model"], BLUE, "icon_model"), ("3+", ["student climate", "solutions piloted"], GREEN, "icon_bulb"),
+         ("1", ["how-to guide", "for schools"], LBLUE, "icon_guide"), ("3", ["countries", "learning together"], RED, "icon_network")]
+STEPS = [("Form a volunteer circle", "icon_model"), ("Pick a local problem", "icon_pin"),
+         ("Pilot a solution", "icon_bulb"), ("Measure, improve, share", "icon_chart")]
+IMPACT = ["Real pilots where students live", "Solutions shared across three countries", "Any school can adopt it"]
+RX, RW, RY, RH, RP = 5.75, 6.95, 2.2, 0.9, 1.02   # step rows on the method slide
 
 SLIDES = [
     dict(layout="cover", elems=[
@@ -84,35 +84,33 @@ SLIDES = [
                                 [R("Azad Kılıçarslan · Ayça Selin Akyol", 12.5)]], 2.9, anchor="m", gap=2),
     ]),
     dict(layout="content", title="PROBLEM AND AIM", elems=[
-        T(0.6, 1.5, 5.3, 0.35, [[R("PROBLEM", 14, GREEN, head=True)]], 0.6),
-        T(0.6, 1.85, 5.3, 1.65, [[R("Awareness alone does not create climate action.", 30, INK, head=True)]], 0.9),
-        S("awareness_action", 6.15, 1.5, 6.5, 3.45, 1.4),
-        T(6.58, 5.05, 2.0, 0.4, [[R("AWARENESS", 16, "7A8594", head=True)]], 2.6, align="c"),
-        T(10.29, 5.05, 2.0, 0.4, [[R("ACTION", 16, BLUE, head=True)]], 5.2, align="c"),
-        T(0.6, 3.8, 5.3, 0.35, [[R("AIM", 14, GREEN, head=True)]], 5.4),
-        T(0.6, 4.15, 5.3, 2.0, [[R("Make young people active partners in climate solutions.", 30, BLUE, head=True)]], 5.7),
+        T(0.6, 1.5, 5.9, 0.35, [[R("PROBLEM", 14, GREEN, head=True)]], 0.6),
+        T(0.6, 1.85, 5.9, 1.65, [[R("Students learn about climate change but rarely get to act.", 30, INK, head=True)]], 0.9),
+        S("awareness_action", 6.75, 1.95, 5.9, 3.13, 1.4),
+        T(0.6, 3.8, 5.9, 0.35, [[R("AIM", 14, GREEN, head=True)]], 5.4),
+        T(0.6, 4.15, 5.9, 2.0, [[R("Student teams solve real climate problems in their own communities.", 30, BLUE, head=True)]], 5.7),
     ]),
     dict(layout="content", title="METHOD", elems=[
-        S("imece_pdca", 0.7, 1.28, 5.0, 5.0, 0.6, words=4),
-    ] + [e for i, (hd, cap, ic) in enumerate(ROWS3) for e in (
-        C(6.3, 1.5 + i * 1.55, 6.4, 1.35, [[R(hd, 22, BLUE, head=True)], [R(cap, 16)]], 2.2 + i * 1.3,
-          pad=(1.45, 0.15, 0.25, 0.15), gap=2),
-        S(ic, 6.5, 1.7 + i * 1.55, 0.95, 0.95, 2.5 + i * 1.3),
+        T(0.6, 1.36, 12.1, 0.6, [[R("İMECE Circles: ", 23, BLUE, head=True), R("a Turkish teamwork method used in ", 23, INK, head=True),
+                                  R("5,000+ projects", 23, GREEN, head=True)]], 0.6, anchor="m"),
+        S("imece_steps", 0.85, 2.05, 4.25, 4.25, 1.2),
+    ] + [e for i, (txt, ic) in enumerate(STEPS) for e in (
+        C(RX, RY + i * RP, RW, RH, [[R(txt, 23, INK, head=True)]], 3.0 + i * 1.2, pad=(1.2, 0.1, 1.2, 0.1)),
+        S(f"badge{i + 1}", RX + 0.22, RY + i * RP + 0.15, 0.6, 0.6, 3.2 + i * 1.2),
+        S(ic, RX + RW - 1.02, RY + i * RP + 0.07, 0.76, 0.76, 3.4 + i * 1.2),
     )]),
     dict(layout="content", title="EXPECTED OUTPUTS", elems=[e for i, (num, cap, col, ic) in enumerate(TILES) for e in (
-        C(X0 + i * (CW4 + G4), 1.5, CW4, 3.55, [[R(num, 46, col, head=True)], [R(cap, 17)]], 0.6 + i * 1.1,
-          pad=(0.2, 0.2, 0.2, 0.3), align="c", anchor="b", gap=2),
+        C(X0 + i * (CW4 + G4), 1.5, CW4, 3.75, [[R(num, 46, col, head=True)], [R(cap[0], 17)], [R(cap[1], 17)]], 0.6 + i * 1.1,
+          pad=(0.15, 0.2, 0.15, 0.28), align="c", anchor="b", gap=0),
         S(ic, X0 + i * (CW4 + G4) + (CW4 - 1.85) / 2, 1.68, 1.85, 1.85, 0.9 + i * 1.1),
     )] + [
-        T(0.55, 5.4, 12.23, 0.4, [[R("Targets of the pilot at Istanbul Kent University", 15, MUTED, i=True)]], 5.4, align="c"),
+        T(0.55, 5.55, 12.23, 0.4, [[R("Targets, not results yet", 15, MUTED, i=True)]], 5.4, align="c"),
     ]),
     dict(layout="content", title="CLIMATE ACTION AND IMPACT", elems=[
-        T(0.6, 1.5, 5.8, 1.5, [[R("Local action,", 34, BLUE, head=True)], [R("global contribution.", 34, GREEN, head=True)]],
-          0.6, gap=0),
-        S("globe", 6.75, 1.22, 5.8, 4.97, 1.0, words=3),
+        S("globe", 6.75, 1.22, 5.8, 4.97, 0.8, words=3),
     ] + [e for i, txt in enumerate(IMPACT) for e in (
-        S("icon_check", 0.6, 3.4 + i * 0.85, 0.52, 0.52, 4.2 + i * 0.8),
-        T(1.32, 3.4 + i * 0.85, 5.0, 0.52, [[R(txt, 21)]], 4.3 + i * 0.8, anchor="m"),
+        S("icon_check", 0.6, 1.95 + i * 1.3, 0.7, 0.7, 3.6 + i * 1.3),
+        T(1.55, 1.75 + i * 1.3, 5.1, 1.1, [[R(txt, 25, BLUE if i == 0 else INK, head=True)]], 3.7 + i * 1.3, anchor="m"),
     )]),
     dict(layout="closing", elems=[
         T(1.14, 2.72, 6.9, 0.85, [[R("THANK YOU", 44, BLUE, head=True)]], 0.4, tpl="THANK YOU"),

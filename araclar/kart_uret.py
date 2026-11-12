@@ -28,14 +28,14 @@ TXT = dict(
         band="COP31 TÜRKİYE  ·  GREEN ZONE  ·  ANTALYA, 19 NOVEMBER 2026",
         title="CLIMATE İMECE",
         sub="From Climate Action to Implementation with Young People, Educational Institutions and Local Communities",
-        summary=("Climate İMECE turns young people from passive learners into active partners in climate solutions. "
-                 "In small, voluntary İMECE Circles, students combine local experience with academic knowledge and work "
-                 "through the Plan–Do–Check–Act cycle. A pilot at Istanbul Kent University connects young people in "
-                 "Türkiye, Algeria and India through online exchange. The model is designed so that other institutions "
-                 "and communities can adopt it."),
+        summary=("İMECE is the Turkish tradition of working together voluntarily. In Climate İMECE, students form small "
+                 "volunteer teams called İMECE Circles; each circle picks a real climate problem from its own community, "
+                 "designs a solution, pilots it on a small scale and measures the result. Circles at Istanbul Kent "
+                 "University share what they learn online with students in Algeria and India. The result is a tested "
+                 "model and a how-to guide that other schools can use."),
         out_h="EXPECTED OUTPUTS (PROJECT TARGETS)",
-        outs=["A Climate İMECE Youth Model", "At least three youth-led solutions",
-              "A practical implementation guide", "A network across three countries"],
+        outs=["A tested Climate İMECE model", "At least three piloted solutions",
+              "A how-to guide for other schools", "A network across three countries"],
         team_h="PROJECT TEAM",
         team=[("Prof. Dr. Hayal Köksal", " (Project Director)"), "Dr. Memet Aslan  ·  Aleyna Çavdar  ·  Azad Kılıçarslan  ·  Ayça Selin Akyol"],
         partners="Partners: Kasdi Merbah University (Algeria)  ·  WCTQEE network schools (India)",
@@ -48,14 +48,13 @@ TXT = dict(
         band="COP31 TÜRKİYE  ·  YEŞİL BÖLGE  ·  ANTALYA, 19 KASIM 2026",
         title="İKLİM İMECESİ",
         sub="Gençler, Eğitim Kurumları ve Yerel Topluluklarla İklim Eyleminden Uygulamaya",
-        summary=("İklim İmecesi, gençleri pasif öğrenicilerden iklim çözümlerinin aktif ortaklarına dönüştürmeyi amaçlar. "
-                 "Küçük ve gönüllü İMECE Halkaları'nda öğrenciler yerel deneyimi akademik bilgiyle birleştirir ve "
-                 "Planla–Uygula–Kontrol Et–Önlem Al döngüsüyle çalışır. İstanbul Kent Üniversitesi'ndeki pilot uygulama; "
-                 "Türkiye, Cezayir ve Hindistan'daki gençleri çevrim içi paylaşımlarla buluşturur. Model, başka kurum ve "
-                 "toplulukların da uyarlayabileceği biçimde tasarlanmıştır."),
+        summary=("İklim İmecesi'nde öğrenciler, İMECE Halkası adı verilen küçük ve gönüllü ekipler kurar. Her halka kendi "
+                 "yaşam çevresinden gerçek bir iklim sorunu seçer, bir çözüm tasarlar, küçük ölçekte dener ve sonucunu ölçer. "
+                 "İstanbul Kent Üniversitesi'ndeki halkalar, öğrendiklerini Cezayir ve Hindistan'daki öğrencilerle çevrim içi "
+                 "paylaşır. Sonuçta ortaya, başka okulların da kullanabileceği denenmiş bir model ve uygulama rehberi çıkar."),
         out_h="BEKLENEN ÇIKTILAR (PROJE HEDEFLERİ)",
-        outs=["İklim İmecesi Gençlik Modeli", "Gençlerden en az üç iklim çözümü",
-              "Uygulamaya dönük bir rehber", "Üç ülkeyi kapsayan bir öğrenme ağı"],
+        outs=["Denenmiş bir İklim İmecesi modeli", "Pilotu yapılmış en az üç çözüm",
+              "Başka okullar için uygulama rehberi", "Üç ülkeyi kapsayan bir öğrenme ağı"],
         team_h="PROJE EKİBİ",
         team=[("Prof. Dr. Hayal Köksal", " (Proje Yürütücüsü)"), "Dr. Memet Aslan  ·  Aleyna Çavdar  ·  Azad Kılıçarslan  ·  Ayça Selin Akyol"],
         partners="Ortaklar: Kasdi Merbah Üniversitesi (Cezayir)  ·  WCTQEE ağı okulları (Hindistan)",

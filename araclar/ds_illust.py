@@ -117,38 +117,84 @@ def awareness_action(t0=0.0, static=False):
     return wrap("".join(b), w, h), w, h
 
 
-# --- slide 3: İMECE circle inside the PDCA cycle ------------------------------
-def imece_pdca(t0=0.0, static=False):
+# --- slide 3: İMECE circle inside a four-step cycle -----------------------------
+STEP_COLORS = [BLUE, GREEN, LBLUE, RED]
+
+
+def _cycle(labels, t0, static):
+    """People ring in the middle; labels (words or numerals) around it, joined by arrows."""
     w = h = 720
     cx = cy = 360
     R = 268
     b = []
-    labels = [("PLAN", BLUE, 0), ("DO", GREEN, 90), ("CHECK", LBLUE, 180), ("ACT", RED, 270)]
-    # connecting arcs with arrow heads (clockwise)
-    for i, (_, col, ang) in enumerate(labels):
+    for i in range(4):
+        ang = i * 90
         a0, a1 = ang + 24, ang + 66
         d = t0 + 2.4 + i * 0.45
         b.append(f'<path d="{arc(cx, cy, R, a0, a1)}" fill="none" stroke="{LGRAY}" stroke-width="12" stroke-linecap="round" pathLength="1" {a("draw", d)}/>')
         hx, hy = pt(cx, cy, R, a1 + 3)
         b.append(f'<g transform="translate({hx:.1f},{hy:.1f}) rotate({a1 + 3 + 90:.1f})"><g {a("pop", d + 0.6)}>'
                  f'<path d="M-4,-17 L20,0 L-4,17 Z" fill="{GRAY}" stroke="{GRAY}" stroke-width="5" stroke-linejoin="round"/></g></g>')
-    for i, (lab, col, ang) in enumerate(labels):
-        x, y = pt(cx, cy, R, ang)
-        pw = 150 if len(lab) > 4 else 126
+    for i, lab in enumerate(labels):
+        col = STEP_COLORS[i]
+        x, y = pt(cx, cy, R, i * 90)
         d = t0 + 2.0 + i * 0.45
-        inner = (f'<rect x="{-pw / 2}" y="-29" width="{pw}" height="58" rx="29" fill="{col}"/>'
-                 f'<text x="0" y="9" font-size="26" text-anchor="middle" fill="{WHITE}" letter-spacing="1">{lab}</text>')
+        if len(lab) == 1:
+            inner = (f'<circle cx="0" cy="0" r="44" fill="{col}"/>'
+                     f'<text x="0" y="16" font-size="46" text-anchor="middle" fill="{WHITE}">{lab}</text>')
+        else:
+            pw = 150 if len(lab) > 4 else 126
+            inner = (f'<rect x="{-pw / 2}" y="-29" width="{pw}" height="58" rx="29" fill="{col}"/>'
+                     f'<text x="0" y="9" font-size="26" text-anchor="middle" fill="{WHITE}" letter-spacing="1">{lab}</text>')
         if static:
             b.append(f'<g transform="translate({x:.1f},{y:.1f})"><g {a("pop", d)}>{inner}</g></g>')
         else:
             b.append(f'<g transform="translate({x:.1f},{y:.1f})"><g {a("pop", d)}>'
                      f'<g class="pulse" style="animation-delay:{t0 + 5 + i:.2f}s">{inner}</g></g></g>')
-    # people
     b.append(f'<circle cx="{cx}" cy="{cy}" r="88" fill="#E9F0FA" {a("pop", t0)}/>')
     ring = people_ring(cx, cy, 128, 8, t0 + 0.3, s=1.2, step=0.17)
     b.append(ring if static else f'<g class="turn" style="animation-delay:{t0 + 4:.2f}s">{ring}</g>')
     b.append(sprout(cx, cy + 44, t0 + 1.9, s=0.9, static=static))
     return wrap("".join(b), w, h), w, h
+
+
+def imece_pdca(t0=0.0, static=False):
+    return _cycle(["PLAN", "DO", "CHECK", "ACT"], t0, static)
+
+
+def imece_steps(t0=0.0, static=False):
+    return _cycle(["1", "2", "3", "4"], t0, static)
+
+
+def _badge(n):
+    def f(t0=0.0, static=False):
+        col = STEP_COLORS[n - 1]
+        b = (f'<g {a("pop", t0)}><circle cx="100" cy="100" r="88" fill="{col}"/>'
+             f'<text x="100" y="134" font-size="96" text-anchor="middle" fill="{WHITE}">{n}</text></g>')
+        return wrap(b, 200, 200), 200, 200
+    f.__name__ = f"badge{n}"
+    return f
+
+
+badge1, badge2, badge3, badge4 = (_badge(n) for n in (1, 2, 3, 4))
+
+
+def icon_pin(t0=0.0, static=False):
+    b = [f'<ellipse cx="100" cy="172" rx="46" ry="11" fill="{LGRAY}" {a("fade", t0)}/>']
+    if not static:
+        b.append(f'<ellipse cx="100" cy="172" rx="60" ry="15" fill="none" stroke="{GREEN}" stroke-width="5" class="ripple" style="animation-delay:{t0 + 2:.2f}s"/>')
+    b.append(f'<g {a("grow", t0 + 0.15)}><path d="M100,168 C66,124 46,104 46,76 C46,46 70,24 100,24 C130,24 154,46 154,76 C154,104 134,124 100,168Z" fill="{GREEN}"/>'
+             f'<circle cx="100" cy="76" r="24" fill="{WHITE}"/></g>')
+    return wrap("".join(b), 200, 200), 200, 200
+
+
+def icon_chart(t0=0.0, static=False):
+    b = [f'<path d="M30,168 H172" stroke="{GRAY}" stroke-width="8" stroke-linecap="round" {a("fade", t0)}/>']
+    for i, (x, hh, c) in enumerate([(44, 46, LBLUE), (86, 78, BLUE), (128, 112, RED)]):
+        b.append(f'<g {a("grow", t0 + 0.15 + i * 0.18)}><rect x="{x}" y="{160 - hh}" width="30" height="{hh}" rx="6" fill="{c}"/></g>')
+    b.append(f'<g {a("pop", t0 + 0.9)}><circle cx="143" cy="34" r="22" fill="{GREEN}"/>'
+             f'<path d="M132,35 L140,43 L154,26" stroke="{WHITE}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>')
+    return wrap("".join(b), 200, 200), 200, 200
 
 
 # --- slide 4 icons (200 x 200) ---------------------------------------------------
@@ -248,5 +294,6 @@ def imece_circle(t0=0.0, static=False):
     return wrap(b, w, h), w, h
 
 
-ILLUST = {f.__name__: f for f in (awareness_action, imece_pdca, icon_model, icon_bulb, icon_guide,
-                                    icon_network, icon_venn, icon_check, globe, imece_circle)}
+ILLUST = {f.__name__: f for f in (awareness_action, imece_pdca, imece_steps, icon_model, icon_bulb, icon_guide,
+                                    icon_network, icon_venn, icon_check, icon_pin, icon_chart, badge1, badge2,
+                                    badge3, badge4, globe, imece_circle)}

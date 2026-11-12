@@ -83,6 +83,8 @@ Hangi formatın oynatılacağı etkinlik teknik ekibiyle teyit edilmeli (şablon
 | Bilgi notu (1 sayfa) | — | Hazırlanmadı |
 
 Akış: Kapak → Problem and Aim → Method → Expected Outputs → Climate Action and Impact → Thank You.
+İçerik projede fiilen ne yapıldığını anlatır: öğrenciler gönüllü bir halka kurar, kendi çevrelerinden bir iklim
+sorunu seçer, çözümü küçük ölçekte dener, ölçüp paylaşır (Türkiye, Cezayir, Hindistan).
 Proje henüz başlamadığı için 4. slayt "bulgular" değil **beklenen çıktılar (hedefler)** olarak adlandırıldı.
 
 - Sorumluluk reddi metnindeki boşluklara, e-postadaki talimat gereği hem Türkçe hem İngilizce metinde
