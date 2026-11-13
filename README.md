@@ -88,7 +88,7 @@ sorunu seçer, çözümü küçük ölçekte dener, ölçüp paylaşır (Türkiy
 Proje henüz başlamadığı için 4. slayt "bulgular" değil **beklenen çıktılar (hedefler)** olarak adlandırıldı.
 
 - Sorumluluk reddi metnindeki boşluklara, e-postadaki talimat gereği hem Türkçe hem İngilizce metinde
-  "İstanbul Kent Üniversitesi – Prof. Dr. Hayal Köksal" yazıldı.
+  "Hayal Köksal ve İstanbul Kent Üniversitesi" / "Hayal Köksal and Istanbul Kent University" yazıldı (hocanın isteği; panel sunumlarında da aynı).
 - Görseller projeye özel çizildi (`araclar/ds_illust.py`): İMECE halkası, PDCA döngüsü, farkındalık→eylem,
   ülke ağı küresi ve ikonlar. Şeffaf PNG kopyaları `dijital_ekran/gorseller/` altında.
 - .pptx içinde öğeler sırayla belirir, slaytlar 13 sn'de otomatik geçer ve gösteri döngüdedir. Video aynı

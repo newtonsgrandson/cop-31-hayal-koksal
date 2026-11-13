@@ -32,7 +32,7 @@ DISC_TR = ("Bu sunumda yer alan görüş, bilgi ve ifadelerden, sunumun hazırla
 DISC_EN = ("{who} is solely responsible for the views, information and statements expressed in this presentation, "
            "as well as for its preparation and content. The presentation does not necessarily reflect the views of "
            "the Council of Higher Education of Türkiye (YÖK), nor does it imply any responsibility or liability on its part.")
-WHO_TR, WHO_EN = f"{UNI_TR} – {PI}", f"{UNI_EN} – {PI}"
+WHO_TR, WHO_EN = "Hayal Köksal ve İstanbul Kent Üniversitesi", "Hayal Köksal and Istanbul Kent University"
 
 BLUE, GREEN, LBLUE, RED = "124DA2", "44B97E", "1B75BB", "E41E26"
 INK, MUTED, WHITE, LINE = "1F2937", "5B6675", "FFFFFF", "D5DCE6"

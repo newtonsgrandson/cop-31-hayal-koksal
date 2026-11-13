@@ -658,7 +658,7 @@ def build(lang, outfile):
     slides = list(prs.slides)
     assert len(slides) == 20
     for i, s in enumerate(slides, 1):
-        fill_disclaimer(s, C["tr"]["inst"], C["en"]["inst"])
+        fill_disclaimer(s, "Hayal Köksal ve İstanbul Kent Üniversitesi", "Hayal Köksal and Istanbul Kent University")
         if i == 1:
             build_title(s, c)
         elif i == 20:
