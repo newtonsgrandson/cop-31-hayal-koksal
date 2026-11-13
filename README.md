@@ -26,7 +26,7 @@
 | `sunum/COP31_Iklim_Imecesi_Hayal_Koksal_TR.pptx` | Türkçe sürüm (aynı yapı) |
 | `sunum/*.pdf` | Hızlı önizleme için PDF dışa aktarımları (yazı tipi yerine konulmuş olabilir; asıl dosya .pptx) |
 
-Üretim: `araclar/sunum_uret.py <taban.pptx> <medya_klasörü> <çıktı_klasörü> <logo_klasörü>`. Taban dosya, şablondaki
+Üretim: `araclar/sunum_uret.py <taban.pptx> <medya_klasörü> <çıktı_klasörü> <logo_klasörü> <fotoğraf_klasörü>`. Taban dosya, şablondaki
 "Başlık ve İçerik" slaydının 18 kez çoğaltılmasıyla (kapak + 18 içerik + kapanış) oluşturulur;
 medya klasörü hocanın özgün sunumundaki görsellerdir (`ppt/media`).
 
@@ -105,3 +105,10 @@ Proje henüz başlamadığı için 4. slayt "bulgular" değil **beklenen çıkt�
 - Kapak ve kapanış düzeninin arka planında, slayt gösterisinde sağ tarafta büyüyen kırmızı lale videosu
   oynar. Bu yüzden kapak/kapanış içeriği slaydın sol bölümünde (x < 8 inç) tutulur; 20 slaytlık panel
   sunumunun kapağı da buna göre düzeltildi.
+
+## Hocanın revizeleri (13 Kasım 2026)
+
+Hocanın mor vurguyla işaretlediği dosya `kaynak/revize/` altında, eklediği dört fotoğraf `kaynak/fotograflar/`
+altında. Tüm revizeler Türkçe ve İngilizce panel sunumuna işlendi. Slogan slaydı ("Kendinle Yarış,
+Başkalarıyla İş Birliği Yap") hocanın isteğiyle sona, kapanıştan hemen önceye alındı ve dört fotoğraf bu
+slayda yerleştirildi.

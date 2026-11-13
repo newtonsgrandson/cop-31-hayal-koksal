@@ -12,7 +12,7 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR, MSO_AUTO_SIZE
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-BASE, MEDIA, OUT, LOGOS = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+BASE, MEDIA, OUT, LOGOS, PHOTOS = sys.argv[1:6]
 
 from helpers import *  # noqa
 from helpers import _runs
@@ -32,6 +32,7 @@ C["en"] = dict(
     event="COP31 Türkiye · YÖK Green Zone · Antalya, 19 November 2026 · Panel 2, 14:00–15:00",
     s2=dict(h="INTRODUCTION", big="CLIMATE İMECE: FROM CLIMATE ACTION TO IMPLEMENTATION",
             tag="A human-centred, collaborative and participatory model for climate action",
+            tag2="Built on a method tested in more than 5,000 applications in schools and institutions at every level since 1997, and awarded in the 2005 Türkiye Creative Development Ideas Competition.",
             team_h="RESEARCH TEAM · Istanbul Kent University",
             team=[("Prof. Dr. Hayal Köksal", "Project Director"),
                   ("Res. Asst. Dr. Memet Aslan", "Researcher"),
@@ -41,9 +42,9 @@ C["en"] = dict(
     s3=dict(h="OUR CENTRAL QUESTION",
             q="How can we move young people from climate awareness to meaningful climate action?",
             a="Young people should become active partners in identifying problems, developing solutions and implementing change."),
-    s4=dict(h="THE MODEL", lead="A model that brings together",
+    s4=dict(h="THE MODEL", lead="A model that brings education stakeholders together: İMECE CIRCLES!",
             who=["Young people", "Educational institutions", "Universities", "Local communities"],
-            how="through collaboration and collective action."),
+            how="Through collaboration and collective action rooted in Turkish culture."),
     s5=dict(h="WHY CLIMATE İMECE?", items=[
         "Climate change is a multidimensional global challenge.",
         "Information and awareness alone are not sufficient.",
@@ -54,12 +55,12 @@ C["en"] = dict(
             defn="İMECE is a traditional Turkish concept referring to people coming together voluntarily to achieve a shared goal.",
             rep="In our educational model, İMECE represents:",
             vals=["Belonging", "Participation", "Collaboration", "Collective Learning",
-                  "Collective Intelligence", "Collective Action", "Quality and Social Impact"]),
+                  "Collective Intelligence", "Co-creation", "Collective Action", "Quality and Social Impact"]),
     s7=dict(h="THE POWER OF İMECE", tag="From individual effort to collective intelligence",
             cap1="Young people identifying real problems together",
             cap2="Learning and acting as a community"),
     s8=dict(h="WHAT IS AN İMECE CIRCLE?",
-            tag="A small, voluntary and collaborative learning community",
+            tag="A small, voluntary and collaborative learning community that follows PDCA, the total quality management (TQM) cycle",
             ring=["REAL PROBLEM", "PEOPLE AFFECTED", "SHARED GOAL", "COLLABORATION",
                   "ACTION", "REFLECTION", "CONTINUOUS IMPROVEMENT"]),
     s9=dict(h="OUR GUIDING PRINCIPLE", l1="Compete with Yourself,", l2="Collaborate with Others."),
@@ -76,7 +77,7 @@ C["en"] = dict(
              c1h="LEAD INSTITUTION", c1=["Istanbul Kent University, Türkiye"],
              c2h="INTERNATIONAL PARTNERS",
              c2=["Kasdi Merbah University, Algeria",
-                 "World Council for Total Quality and Excellence in Education (WCTQEE)",
+                 "World Council for Total Quality and Excellence in Education (WCTQEE), 35 countries",
                  "Little Angels High School, Gwalior, India",
                  "Suncity School, Gurgaon, India",
                  "Bhavan Vidyalaya, Panchkula, India",
@@ -91,34 +92,35 @@ C["en"] = dict(
              countries=["Türkiye", "Algeria", "India"]),
     s12=dict(h="MAIN AIM AND OBJECTIVES", tag="Our main aim",
              aim="To develop a practical Climate İMECE model that enables young people to:",
+             q="3 KEY QUESTIONS:  What is our problem?  Why does it exist?  How do we solve it?",
              steps=[("Identify", "climate challenges in their own environments"),
-                    ("Combine", "local and academic knowledge"),
+                    ("Combine", "local and global academic knowledge"),
                     ("Develop", "collaborative and sustainable solutions"),
                     ("Implement", "small-scale pilot actions"),
-                    ("Evaluate", "and share their results")]),
+                    ("Evaluate", "and spread the results by sharing them")]),
     s13=dict(h="MAIN AIM AND OBJECTIVES", tag="Specific objectives", items=[
         "Establish a pilot Climate İMECE application at Istanbul Kent University.",
         "Create collaborative İMECE Circles.",
-        "Develop at least three applicable climate solutions.",
-        "Encourage international learning between Türkiye, Algeria and India.",
-        "Prepare a practical implementation guide.",
-        "Evaluate the model's transferability to other institutions and communities."]),
+        "Identify climate problems and their causes, and develop at least three applicable climate solutions.",
+        "Encourage international learning between Türkiye, Algeria and India, and inspire other countries to join.",
+        "Prepare a practical implementation guide and keep improving it to ensure continuity.",
+        "Keep going with encouraging, sharing-based methods so the model can be transferred to other institutions and communities."]),
     s14=dict(h="METHODOLOGY: İMECE CIRCLES AND PDCA",
              tag="A participatory and action-oriented research model",
              lead="The project integrates İMECE Circles with the PDCA mindset, the quality improvement cycle:",
-             pdca=[("PLAN", "Identify problems and plan solutions."),
-                   ("DO", "Implement selected actions."),
+             pdca=[("PLAN", "Identify problems, determine their causes after a literature review and plan solutions. Do all this using quality tools and AI ethically."),
+                   ("DO", "Implement selected actions through pilot studies."),
                    ("CHECK", "Monitor and evaluate results."),
-                   ("ACT", "Improve, adapt and share successful practices.")]),
-    s15=dict(h="THE RESEARCH PROCESS", tag="Four work packages (WPs)", wps=[
-        ("WP1", "Preparation", ["Literature review", "Research instruments", "Participant identification"]),
-        ("WP2", "İMECE Circles", ["Identifying local climate challenges", "Defining common problem areas", "Collaborative discussions"]),
+                   ("ACT", "Improve, adapt and share successful practices. Make this process continuous!")]),
+    s15=dict(h="THE RESEARCH PROCESS", tag="Four work (implementation) packages (WPs)", wps=[
+        ("WP1", "Preparation", ["Form teams of volunteers by area of interest", "Review the literature", "Use quality tools ethically and effectively"]),
+        ("WP2", "İMECE Circles", ["Identifying and confirming local climate challenges", "Defining common problem areas", "Finding main and root causes, and a solution for each, through collaborative discussion"]),
         ("WP3", "International Collaborative Learning", ["Online meetings", "Sharing local experiences", "Comparing climate challenges"]),
-        ("WP4", "Joint Solutions and Pilot Actions", ["Developing solutions", "Implementing selected actions", "Evaluating results"])]),
+        ("WP4", "Joint Solutions and Pilot Actions", ["Developing solutions", "Implementing selected actions", "Evaluating, reporting and sharing results", "Sustainability matters"])]),
     s16=dict(h="RESEARCH AND EVALUATION", tag="How will we measure progress?", cols=[
         ("Three main sources of evidence", ["Initial and final assessment forms, including peer and jury assessment", "İMECE process records", "Participant reflections and evaluations"]),
         ("Data analysis", ["Frequencies, percentages and averages", "Comparison of initial and final assessments", "Thematic analysis of qualitative data"]),
-        ("Key areas of evaluation", ["Climate awareness", "Participation in climate action", "Collaboration", "Collective problem-solving", "Confidence in implementing solutions"])]),
+        ("Key areas of evaluation", ["Climate awareness", "Participation in climate action", "Collaboration", "Collective problem-solving", "Confidence in implementing solutions", "Ensuring sustainability and measurability"])]),
     s17=dict(h="EXPECTED OUTPUTS AND IMPACT", tag="From local solutions to international learning", items=[
         "A Climate İMECE Youth Model",
         "At least three climate solutions developed by young people",
@@ -126,14 +128,15 @@ C["en"] = dict(
         "A practical Climate İMECE Implementation Guide",
         "An International Youth Climate Learning Network",
         "A digital archive documenting experiences and solutions",
-        "At least one scientific paper or conference presentation"]),
+        "At least one scientific paper or conference presentation",
+        "Outputs shared on the web and across all digital channels"]),
     s18=dict(h="FROM LOCAL ACTION TO GLOBAL CONTRIBUTION", tag="Our vision", items=[
         "Empowering young people",
         "Connecting local and scientific knowledge",
         "Encouraging international cooperation",
         "Supporting sustainable educational practices",
         "Building a culture of shared responsibility"],
-        quote="Climate action begins locally, but its impact can reach globally."),
+        quote="Climate action begins locally; its impact embraces the whole world."),
     s19=dict(h="CONCLUSION", tag="Climate İMECE: learning together, acting together",
              lead="We believe that:", items=[
         "Young people are not merely the future; they are partners in today's climate action.",
@@ -142,7 +145,7 @@ C["en"] = dict(
         "Quality improvement makes action measurable and sustainable.",
         "İMECE creates opportunities for people to work together for a better future."]),
     s20=dict(thanks="THANK YOU",
-             text="Today, I am presenting this research project on behalf of Istanbul Kent University and our international project partners.",
+             text="Today, I am presenting this research project on behalf of Istanbul Kent University and our international project partners. The more countries stand with us, the faster the impact. We look forward to having you with us.",
              motto="Compete with Yourself, Collaborate with Others.",
              sig=["Prof. Dr. Hayal Köksal", "Istanbul Kent University, Türkiye", "hayal.koksal@kent.edu.tr"]),
 )
@@ -157,6 +160,7 @@ C["tr"] = dict(
     event="COP31 Türkiye · YÖK Yeşil Bölge · Antalya, 19 Kasım 2026 · Panel 2, 14:00–15:00",
     s2=dict(h="GİRİŞ", big="İKLİM İMECESİ: İKLİM EYLEMİNDEN UYGULAMAYA",
             tag="İklim eylemi için insan odaklı, iş birliğine dayalı ve katılımcı bir model",
+            tag2="1997 yılından bu yana her düzey okul ve kurumda 5.000'den fazla uygulamayla denenmiş ve 2005 Türkiye Yaratıcı Kalkınma Fikirleri Yarışması'nda ödüllendirilmiş bir yöntemle.",
             team_h="ARAŞTIRMA EKİBİ · İstanbul Kent Üniversitesi",
             team=[("Prof. Dr. Hayal Köksal", "Proje Yürütücüsü"),
                   ("Arş. Gör. Dr. Memet Aslan", "Araştırmacı"),
@@ -164,11 +168,11 @@ C["tr"] = dict(
                   ("Arş. Gör. Azad Kılıçarslan", "Araştırmacı"),
                   ("Arş. Gör. Ayça Selin Akyol", "Araştırmacı")]),
     s3=dict(h="TEMEL SORUMUZ",
-            q="Gençleri iklim farkındalığından anlamlı iklim eylemine nasıl taşıyabiliriz?",
+            q="Gençleri iklim farkındalığından anlamlı bir iklim eylemine nasıl taşıyabiliriz?",
             a="Gençler; sorunları belirleme, çözüm geliştirme ve değişimi uygulama süreçlerinin aktif ortakları olmalıdır."),
-    s4=dict(h="MODEL", lead="Bir araya getiren bir model:",
+    s4=dict(h="MODEL", lead="Eğitim paydaşlarını bir araya getiren bir model: İMECE HALKALARI!",
             who=["Gençler", "Eğitim kurumları", "Üniversiteler", "Yerel topluluklar"],
-            how="İş birliği ve ortak eylem yoluyla."),
+            how="Türk kültüründen gelen iş birliği ve ortak eylem yoluyla."),
     s5=dict(h="NEDEN İKLİM İMECESİ?", items=[
         "İklim değişikliği çok boyutlu küresel bir sorundur.",
         "Bilgi ve farkındalık tek başına yeterli değildir.",
@@ -179,12 +183,12 @@ C["tr"] = dict(
             defn="İMECE, insanların ortak bir amaca ulaşmak için gönüllü olarak bir araya gelmesini ifade eden geleneksel bir Türk kavramıdır.",
             rep="Eğitim modelimizde İMECE şunları temsil eder:",
             vals=["Aidiyet", "Katılım", "İş Birliği", "Birlikte Öğrenme",
-                  "Kolektif Zekâ", "Ortak Eylem", "Kalite ve Toplumsal Etki"]),
+                  "Kolektif Zekâ", "Birlikte Üretme", "Ortak Eylem", "Kalite ve Toplumsal Etki"]),
     s7=dict(h="İMECE'NİN GÜCÜ", tag="Bireysel çabadan kolektif zekâya",
             cap1="Gençler gerçek sorunları birlikte belirliyor",
             cap2="Bir topluluk olarak öğrenmek ve harekete geçmek"),
     s8=dict(h="İMECE HALKASI NEDİR?",
-            tag="Küçük, gönüllü ve iş birliğine dayalı bir öğrenme topluluğu",
+            tag="Küçük, gönüllü ve iş birliğine dayalı bir öğrenme topluluğu; toplam kalite (TKY) süreci PUKÖ'yü izleyerek çalışır",
             ring=["GERÇEK SORUN", "ETKİLENEN İNSANLAR", "ORTAK HEDEF", "İŞ BİRLİĞİ",
                   "EYLEM", "YANSITMA", "SÜREKLİ İYİLEŞTİRME"]),
     s9=dict(h="YOL GÖSTERİCİ İLKEMİZ", l1="Kendinle Yarış,", l2="Başkalarıyla İş Birliği Yap."),
@@ -201,7 +205,7 @@ C["tr"] = dict(
              c1h="YÜRÜTÜCÜ KURUM", c1=["İstanbul Kent Üniversitesi, Türkiye"],
              c2h="ULUSLARARASI ORTAKLAR",
              c2=["Kasdi Merbah Üniversitesi, Cezayir",
-                 "Dünya Toplam Kalite ve Eğitimde Mükemmellik Konseyi (WCTQEE)",
+                 "Dünya Toplam Kalite ve Eğitimde Mükemmellik Konseyi (WCTQEE), 35 ülke",
                  "Little Angels High School, Gwalior, Hindistan",
                  "Suncity School, Gurgaon, Hindistan",
                  "Bhavan Vidyalaya, Panchkula, Hindistan",
@@ -216,34 +220,35 @@ C["tr"] = dict(
              countries=["Türkiye", "Cezayir", "Hindistan"]),
     s12=dict(h="AMAÇ VE HEDEFLER", tag="Projenin amacı",
              aim="Gençlerin aşağıdakileri yapmasını sağlayan uygulanabilir bir İklim İmecesi modeli geliştirmek:",
+             q="3 TEMEL SORU:  Sorunumuz ne?  Neden var?  Nasıl çözeriz?",
              steps=[("Belirleme", "kendi yaşam çevrelerindeki iklim sorunlarını"),
-                    ("Birleştirme", "yerel ve akademik bilgiyi"),
+                    ("Birleştirme", "yerel ve küresel akademik bilgiyi"),
                     ("Geliştirme", "iş birliğine dayalı, sürdürülebilir çözümleri"),
                     ("Uygulama", "küçük ölçekli pilot eylemleri"),
-                    ("Değerlendirme", "ve sonuçları paylaşma")]),
+                    ("Değerlendirme", "sonuçları paylaşarak genele yayma")]),
     s13=dict(h="AMAÇ VE HEDEFLER", tag="Projenin hedefleri", items=[
         "İstanbul Kent Üniversitesi'nde bir İklim İmecesi pilot uygulaması oluşturmak.",
         "İş birliğine dayalı İMECE Halkaları kurmak.",
-        "En az üç uygulanabilir iklim çözümü geliştirmek.",
-        "Türkiye, Cezayir ve Hindistan arasında uluslararası öğrenmeyi teşvik etmek.",
-        "Uygulamaya dönük bir uygulama rehberi hazırlamak.",
-        "Modelin başka kurum ve topluluklara aktarılabilirliğini değerlendirmek."]),
+        "İklim sorunlarını ve nedenlerini belirleyip en az üç uygulanabilir iklim çözümü geliştirmek.",
+        "Türkiye, Cezayir ve Hindistan arasında uluslararası öğrenmeyi teşvik etmek; diğer ülkeleri de bu çalışmaya özendirmek.",
+        "Uygulamaya dönük bir uygulama rehberi hazırlamak ve sürekli iyileştirerek sürekliliği sağlamak.",
+        "Modelin başka kurum ve topluluklara aktarılabilmesi için özendirici ve paylaşımcı yöntemlerle yola devam etmek."]),
     s14=dict(h="YÖNTEM: İMECE HALKALARI VE PUKÖ",
              tag="Katılımcı ve eylem odaklı bir araştırma modeli",
              lead="Proje, İMECE Halkaları'nı kalite iyileştirme döngüsü olan PUKÖ yaklaşımıyla bütünleştirir:",
-             pdca=[("PLANLA", "Sorunları belirle ve çözümleri planla."),
-                   ("UYGULA", "Seçilen eylemleri hayata geçir."),
+             pdca=[("PLANLA", "Sorunları belirle, alan yazını sonrası nedenleri sapta ve çözümleri planla. Tüm bunları kalite araçlarını ve yapay zekâyı etik kullanarak yap."),
+                   ("UYGULA", "Seçilen eylemleri pilot çalışmalarla hayata geçir."),
                    ("KONTROL ET", "Sonuçları izle ve değerlendir."),
-                   ("ÖNLEM AL", "İyileştir, uyarla ve başarılı uygulamaları paylaş.")]),
-    s15=dict(h="ARAŞTIRMA SÜRECİ", tag="Dört iş paketi (İP)", wps=[
-        ("İP1", "Hazırlık", ["Literatür taraması", "Araştırma araçları", "Katılımcıların belirlenmesi"]),
-        ("İP2", "İMECE Halkaları", ["Yerel iklim sorunlarının belirlenmesi", "Ortak sorun alanlarının tanımlanması", "İş birliğine dayalı tartışmalar"]),
+                   ("ÖNLEM AL", "İyileştir, uyarla ve başarılı uygulamaları paylaş. Bu süreci sürekli kıl!")]),
+    s15=dict(h="ARAŞTIRMA SÜRECİ", tag="Dört iş (uygulama) paketi (İP)", wps=[
+        ("İP1", "Hazırlık", ["İlgi alanlarına göre, gönüllü katılımcılardan oluşan ekipler kur", "Literatür taraması yap", "Kalite araçlarını etik ve etkin kullan"]),
+        ("İP2", "İMECE Halkaları", ["Yerel iklim sorunlarının belirlenip kesinleştirilmesi", "Ortak sorun alanlarının tanımlanması", "İş birliğine dayalı tartışmalarla ana ve kök nedenlerin ve her biri için çözüm yollarının tespiti"]),
         ("İP3", "Uluslararası Ortak Öğrenme", ["Çevrim içi toplantılar", "Yerel deneyimlerin paylaşılması", "İklim sorunlarının karşılaştırılması"]),
-        ("İP4", "Ortak Çözümler ve Pilot Eylemler", ["Çözümlerin geliştirilmesi", "Seçilen eylemlerin uygulanması", "Sonuçların değerlendirilmesi"])]),
+        ("İP4", "Ortak Çözümler ve Pilot Eylemler", ["Çözümlerin geliştirilmesi", "Seçilen eylemlerin uygulanması", "Sonuçların değerlendirilmesi, raporlama ve paylaşım", "Sürdürülebilirlik önemli"])]),
     s16=dict(h="ARAŞTIRMA VE DEĞERLENDİRME", tag="İlerlemeyi nasıl ölçeceğiz?", cols=[
         ("Üç temel veri kaynağı", ["Akran ve jüri değerlendirmesini de içeren başlangıç ve sonuç değerlendirme formları", "İMECE süreç kayıtları", "Katılımcı yansıtmaları ve değerlendirmeleri"]),
         ("Veri analizi", ["Frekans, yüzde ve ortalamalar", "Başlangıç ve sonuç değerlendirmelerinin karşılaştırılması", "Nitel verilerin tematik analizi"]),
-        ("Temel değerlendirme alanları", ["İklim farkındalığı", "İklim eylemine katılım", "İş birliği", "Ortak problem çözme", "Çözümleri uygulamaya yönelik öz güven"])]),
+        ("Temel değerlendirme alanları", ["İklim farkındalığı", "İklim eylemine katılım", "İş birliği", "Ortak problem çözme", "Çözümleri uygulamaya yönelik öz güven", "Sürdürülebilirlik ve ölçülebilirliğin sağlanması"])]),
     s17=dict(h="BEKLENEN ÇIKTILAR VE ETKİ", tag="Yerel çözümlerden uluslararası öğrenmeye", items=[
         "İklim İmecesi Gençlik Modeli",
         "Gençler tarafından geliştirilen en az üç iklim çözümü",
@@ -251,14 +256,15 @@ C["tr"] = dict(
         "Uygulamaya dönük İklim İmecesi Uygulama Rehberi",
         "Uluslararası Gençlik İklim Öğrenme Ağı",
         "Deneyimleri ve çözümleri belgeleyen dijital arşiv",
-        "En az bir bilimsel makale veya bildiri"]),
+        "En az bir bilimsel makale veya bildiri",
+        "Çıktıların web tasarımıyla tüm dijital ortamlarda paylaşımı"]),
     s18=dict(h="YEREL EYLEMDEN KÜRESEL KATKIYA", tag="Vizyonumuz", items=[
         "Gençleri güçlendirmek",
         "Yerel ve bilimsel bilgiyi birbirine bağlamak",
         "Uluslararası iş birliğini teşvik etmek",
         "Sürdürülebilir eğitim uygulamalarını desteklemek",
         "Ortak sorumluluk kültürü oluşturmak"],
-        quote="İklim eylemi yerelde başlar; etkisi ise küresele ulaşabilir."),
+        quote="İklim eylemi yerelde başlar; etkisi tüm dünyayı kucaklar."),
     s19=dict(h="SONUÇ", tag="İklim İmecesi: birlikte öğrenmek, birlikte harekete geçmek",
              lead="İnanıyoruz ki:", items=[
         "Gençler yalnızca gelecek değil, bugünün iklim eyleminin ortaklarıdır.",
@@ -267,7 +273,7 @@ C["tr"] = dict(
         "Kalite iyileştirme, eylemi ölçülebilir ve sürdürülebilir kılar.",
         "İMECE, insanların daha iyi bir gelecek için birlikte çalışmasına olanak sağlar."]),
     s20=dict(thanks="TEŞEKKÜRLER",
-             text="Bu araştırma projesini bugün İstanbul Kent Üniversitesi ve uluslararası proje ortaklarımız adına sunuyorum.",
+             text="Bu araştırma projesini bugün İstanbul Kent Üniversitesi ve uluslararası proje ortaklarımız adına sunuyorum. Ne kadar çok ülke yanımızda olursa, o kadar hızlı etki yaratılır. Sizleri aramıza bekliyoruz.",
              motto="Kendinle Yarış, Başkalarıyla İş Birliği Yap.",
              sig=["Prof. Dr. Hayal Köksal", "İstanbul Kent Üniversitesi, Türkiye", "hayal.koksal@kent.edu.tr"]),
 )
@@ -321,10 +327,10 @@ def build_thanks(s, c):
             sh.text_frame.word_wrap = True
             sh.text_frame.auto_size = MSO_AUTO_SIZE.NONE
             sh.top = Inches(2.72); sh.width = Inches(ZONE_W); sh.height = Inches(0.85)
-    tb(s, "Closing text", 1.14, 3.6, ZONE_W, 0.7, [c["text"]], size=15, color=INK)
-    tb(s, "Motto", 1.14, 4.32, ZONE_W, 0.45, [c["motto"]], size=17, color=GREEN, bold=True, font=HEAD_FONT)
-    kent_logo(s, 1.14, 5.02, 0.95)
-    tb(s, "Signature", 3.65, 4.98, 4.35, 1.05,
+    tb(s, "Closing text", 1.14, 3.52, ZONE_W, 0.9, [c["text"]], size=13, color=INK)
+    tb(s, "Motto", 1.14, 4.5, ZONE_W, 0.45, [c["motto"]], size=17, color=GREEN, bold=True, font=HEAD_FONT)
+    kent_logo(s, 1.14, 5.15, 0.95)
+    tb(s, "Signature", 3.65, 5.1, 4.35, 1.05,
        [(c["sig"][0], dict(bold=True, color=BLUE, size=16)), c["sig"][1], c["sig"][2]],
        size=12, space_after=1, anchor=MSO_ANCHOR.MIDDLE)
 
@@ -334,8 +340,8 @@ def build_s2(s, c):
     card(s, "Project card", L, T, 6.6, H, fill=BLUE, line=None)
     tb(s, "Project title", L + 0.4, T + 0.4, 5.8, 1.9, [c["big"]], size=26, color=WHITE,
        bold=True, font=HEAD_FONT, line_spacing=1.05)
-    tb(s, "Project tagline", L + 0.4, T + 2.5, 5.8, 1.2, [c["tag"]], size=16,
-       color=WHITE, italic=True)
+    tb(s, "Project tagline", L + 0.4, T + 1.95, 5.8, 2.3, [c["tag"], (c["tag2"], dict(size=13))], size=16,
+       color=WHITE, italic=True, space_after=8)
     pill(s, "Country pill", L + 1.6, B - 0.55, 2.4, 0.42, "COP31 · Antalya 2026", fill=GREEN, size=12)
     # right: team
     x = L + 6.9; w = R - x
@@ -363,8 +369,8 @@ def build_s3(s, c):
 
 def build_s4(s, c):
     pic(s, "Paper people circle", "image3.jpg", 6.9, T + 0.35, w=5.7)
-    tb(s, "Model lead", L, T + 0.2, 5.9, 0.6, [c["lead"]], size=22, color=BLUE, bold=True,
-       font=HEAD_FONT)
+    tb(s, "Model lead", L, T - 0.05, 5.9, 0.95, [c["lead"]], size=18, color=BLUE, bold=True,
+       font=HEAD_FONT, anchor=MSO_ANCHOR.MIDDLE)
     y = T + 1.0
     for i, w_ in enumerate(c["who"]):
         card(s, f"Who card {i+1}", L, y, 5.9, 0.62)
@@ -429,7 +435,7 @@ def build_s7(s, c):
 
 
 def build_s8(s, c):
-    subtitle(s, c["tag"])
+    subtitle(s, c["tag"], size=16)
     cx, cy = CX, 4.1
     rx, ry = 4.2, 1.75
     ring = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(cx - rx), Inches(cy - ry), Inches(2 * rx), Inches(2 * ry))
@@ -447,11 +453,17 @@ def build_s8(s, c):
 
 
 def build_s9(s, c):
-    card(s, "Principle card", L + 1.2, T + 0.6, W - 2.4, 3.6, fill=CARD)
-    tb(s, "Line 1", L + 1.5, T + 1.0, W - 3.0, 1.3, [c["l1"]], size=40, color=BLUE, bold=True,
+    # slogan in the middle, the professor's four photos in the corners
+    pic(s, "Photo 1", f"{PHOTOS}/foto1.jpg", L, 1.45, w=3.3)
+    pic(s, "Photo 3", f"{PHOTOS}/foto3.jpg", L, 3.8, w=3.3)
+    pic(s, "Photo 2", f"{PHOTOS}/foto2.jpg", R - 3.0, 1.45, w=3.0)
+    pic(s, "Photo 4", f"{PHOTOS}/foto4.jpg", R - 3.0, 3.9, w=3.0)
+    cx0, cw0 = L + 3.55, W - 3.55 - 3.25
+    card(s, "Principle card", cx0, 1.9, cw0, 3.8, fill=CARD)
+    tb(s, "Line 1", cx0 + 0.2, 2.2, cw0 - 0.4, 1.3, [c["l1"]], size=32, color=BLUE, bold=True,
        font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-    tb(s, "Line 2", L + 1.5, T + 2.3, W - 3.0, 1.3, [c["l2"]], size=40, color=GREEN, bold=True,
-       font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+    tb(s, "Line 2", cx0 + 0.2, 3.5, cw0 - 0.4, 1.9, [c["l2"]], size=32, color=GREEN, bold=True,
+       font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.TOP)
 
 
 def build_s10(s, c):
@@ -488,11 +500,12 @@ def build_s11(s, c):
 
 def build_s12(s, c):
     y = subtitle(s, c["tag"])
-    tb(s, "Aim", L, y + 0.1, W, 0.9, [c["aim"]], size=20, color=INK, bold=True)
+    tb(s, "Aim", L, y, W, 0.85, [c["aim"]], size=19, color=INK, bold=True)
+    tb(s, "Key questions", L, y + 0.9, W, 0.4, [c["q"]], size=16, color=GREEN, bold=True, font=HEAD_FONT)
     n = len(c["steps"])
     gap = 0.15
     cw = (W - gap * (n - 1)) / n
-    yy = y + 1.3
+    yy = y + 1.5
     for i, (verb, rest) in enumerate(c["steps"]):
         x = L + i * (cw + gap)
         sh = s.shapes.add_shape(MSO_SHAPE.CHEVRON if i else MSO_SHAPE.PENTAGON,
@@ -504,7 +517,7 @@ def build_s12(s, c):
         tf = sh.text_frame; tf.vertical_anchor = MSO_ANCHOR.MIDDLE
         p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
         _runs(p, str(i + 1), 18, WHITE, bold=True)
-        card(s, f"Step card {i+1}", x, yy + 0.85, cw, 1.9)
+        card(s, f"Step card {i+1}", x, yy + 0.85, cw, 1.75)
         tb(s, f"Step text {i+1}", x + 0.15, yy + 1.0, cw - 0.3, 1.9,
            [(verb, dict(bold=True, color=BLUE, size=17, font=HEAD_FONT)), rest],
            size=14, space_after=6)
@@ -541,8 +554,8 @@ def build_s14(s, c):
         band.shadow.inherit = False
         tb(s, f"PDCA key {i+1}", x, yy, cw, 1.1, [k], size=22, color=WHITE, bold=True,
            font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        circle(s, f"PDCA letter {i+1}", x + cw / 2, yy + 1.75, 0.7, fill=colors[i], text=k[0], size=24)
-        tb(s, f"PDCA text {i+1}", x + 0.2, yy + 2.25, cw - 0.4, B - yy - 2.4, [v], size=15,
+        circle(s, f"PDCA letter {i+1}", x + cw / 2, yy + 1.55, 0.6, fill=colors[i], text=k[0], size=20)
+        tb(s, f"PDCA text {i+1}", x + 0.15, yy + 1.98, cw - 0.3, B - yy - 2.05, [v], size=13,
            align=PP_ALIGN.CENTER)
 
 
@@ -556,7 +569,7 @@ def build_s15(s, c):
         pill(s, f"WP code {i+1}", x + 0.65, y + 0.4, 0.9, 0.42, code, fill=BLUE if i % 2 == 0 else GREEN, size=13)
         tb(s, f"WP name {i+1}", x + 0.2, y + 0.75, cw - 0.4, 0.9, [name], size=16, bold=True,
            color=BLUE, anchor=MSO_ANCHOR.MIDDLE)
-        bullets(s, f"WP {i+1}", x + 0.2, y + 1.75, cw - 0.4, 2.5, items, size=14, gap=6,
+        bullets(s, f"WP {i+1}", x + 0.2, y + 1.85, cw - 0.4, 2.5, items, size=13, gap=5,
                 dot=GREEN if i % 2 == 0 else BLUE)
         if i < 3:
             ar = s.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, Inches(x + cw - 0.02), Inches(y + 0.47),
@@ -655,6 +668,11 @@ def build(lang, outfile):
             set_header(s, cc["h"], size=24 if len(cc["h"]) <= LONG_HEADERS else 20)
             BUILDERS[i](s, cc)
             footer_logo(s)
+    # the slogan slide (built as slide 9) is shown last, just before the closing slide
+    lst = prs.slides._sldIdLst
+    el = lst[8]
+    lst.remove(el)
+    lst.insert(len(lst) - 1, el)
     prs.save(outfile)
     print("wrote", outfile)
 
