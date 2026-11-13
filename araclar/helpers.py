@@ -49,6 +49,33 @@ def _runs(par, text, size, color, bold=False, italic=False, font=None):
     return r
 
 
+class Bi(str):
+    """A string that also carries its Turkish counterpart (bilingual decks)."""
+    def __new__(cls, en, tr):
+        o = super().__new__(cls, en)
+        o.tr = tr
+        return o
+
+
+BI_EN, BI_TR = 0.86, 0.74   # size factors for the English line and the Turkish line under it
+
+
+def _expand(paras, size):
+    """Turn Bi items into an English paragraph followed by a smaller italic Turkish one."""
+    out = []
+    for p in paras:
+        if isinstance(p, Bi):
+            out.append((str(p), dict(size=size * BI_EN, _sa=1)))
+            out.append((p.tr, dict(size=size * BI_TR, italic=True, _tr=True)))
+        elif isinstance(p, tuple) and isinstance(p[0], Bi):
+            o = dict(p[1]); sz = o.get("size", size)
+            out.append((str(p[0]), dict(o, size=sz * BI_EN, _sa=1)))
+            out.append((p[0].tr, dict(o, size=sz * BI_TR, italic=True, bold=False, _tr=True)))
+        else:
+            out.append(p)
+    return out
+
+
 def tb(slide, name, x, y, w, h, paras, size=14, color=INK, bold=False,
        align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.TOP, font=None, italic=False,
        space_after=4, margin=0.05, line_spacing=None):
@@ -61,7 +88,7 @@ def tb(slide, name, x, y, w, h, paras, size=14, color=INK, bold=False,
     for m in ("margin_left", "margin_right", "margin_top", "margin_bottom"):
         setattr(tf, m, Inches(margin))
     first = True
-    for p in paras:
+    for p in _expand(paras, size):
         par = tf.paragraphs[0] if first else tf.add_paragraph()
         first = False
         par.alignment = align
@@ -73,6 +100,9 @@ def tb(slide, name, x, y, w, h, paras, size=14, color=INK, bold=False,
         elif isinstance(p, tuple):
             o = dict(size=size, color=color, bold=bold, italic=italic, font=font)
             o.update(p[1])
+            if o.pop("_sa", None) is not None:
+                par.space_after = Pt(1)
+            o.pop("_tr", None)
             _runs(par, p[0], **o)
         else:  # list of runs
             for text, opts in p:
@@ -80,6 +110,17 @@ def tb(slide, name, x, y, w, h, paras, size=14, color=INK, bold=False,
                 o.update(opts)
                 _runs(par, text, **o)
     return s
+
+
+def _lines(text, w, size):
+    cpl = max(8, int(w * 72 / (size * 0.52)))
+    n, cur = 1, 0
+    for word in str(text).split():
+        if cur and cur + 1 + len(word) > cpl:
+            n += 1; cur = len(word)
+        else:
+            cur += (1 if cur else 0) + len(word)
+    return n
 
 
 def bullets(slide, name, x, y, w, h, items, size=14, color=INK, gap=6,
@@ -90,17 +131,14 @@ def bullets(slide, name, x, y, w, h, items, size=14, color=INK, gap=6,
         tb(slide, name + " title", x, cy, w, 0.35, [title], size=title_size,
            color=title_color, bold=True)
         cy += 0.42
-    line_h = size * 1.25 / 72
     for i, it in enumerate(items):
-        # estimate lines for height
-        chars_per_line = max(10, int((w - 0.3) * 72 / (size * 0.52)))
-        n, cur = 1, 0
-        for word in it.split():
-            if cur and cur + 1 + len(word) > chars_per_line:
-                n += 1; cur = len(word)
-            else:
-                cur += (1 if cur else 0) + len(word)
-        hh = n * line_h + 0.06
+        if isinstance(it, Bi):
+            s1, s2 = size * BI_EN, size * BI_TR
+            hh = (_lines(it, w - 0.3, s1) * s1 + _lines(it.tr, w - 0.3, s2) * s2) * 1.25 / 72 + 0.08
+            line_h = s1 * 1.25 / 72
+        else:
+            line_h = size * 1.25 / 72
+            hh = _lines(it, w - 0.3, size) * line_h + 0.06
         d = slide.shapes.add_shape(MSO_SHAPE.OVAL, Inches(x + 0.05),
                                    Inches(cy + line_h / 2 - 0.05), Inches(0.1), Inches(0.1))
         d.name = f"{name} dot {i+1}"
@@ -157,7 +195,12 @@ def pill(slide, name, cx, cy, w, h, text, fill=BLUE, color=WHITE, size=12):
         setattr(tf, m, 0)
     tf.vertical_anchor = MSO_ANCHOR.MIDDLE
     p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
-    _runs(p, text, size, color, bold=True)
+    if isinstance(text, Bi):
+        _runs(p, str(text), size * 0.82, color, bold=True)
+        p2 = tf.add_paragraph(); p2.alignment = PP_ALIGN.CENTER
+        _runs(p2, text.tr, size * 0.72, color, italic=True)
+    else:
+        _runs(p, text, size, color, bold=True)
     return s
 
 

@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 BASE, MEDIA, OUT, LOGOS, PHOTOS = sys.argv[1:6]
 
 from helpers import *  # noqa
-from helpers import _runs
+from helpers import _runs, Bi
 import helpers
 MEDIA = sys.argv[2]
 helpers.set_media(MEDIA)
@@ -352,7 +352,8 @@ def build_s2(s, c):
         circle(s, f"Team num {i+1}", x + 0.45, y + 0.36, 0.44, fill=BLUE if i else GREEN,
                text=n.split()[-1][0] + n.split()[-2][0] if i else "HK", size=11)
         tb(s, f"Team name {i+1}", x + 0.85, y + 0.08, w - 0.95, 0.6,
-           [(n, dict(bold=True, size=14)), (role, dict(size=11, color=MUTED))],
+           [(str(n), dict(bold=True, size=14)),
+            (f"{role} · {role.tr}" if isinstance(role, Bi) else role, dict(size=11, color=MUTED))],
            space_after=0, anchor=MSO_ANCHOR.MIDDLE)
         y += 0.84
 
@@ -409,9 +410,9 @@ def build_s6(s, c):
         pill(s, f"Value {i+1}", vx + col * (pw + 0.2) + pw / 2, vy + row * 0.62 + ph / 2,
              pw, ph, v, fill=GREEN if i % 3 == 1 else (LBLUE if i % 3 == 2 else BLUE), size=13)
     ph = B - (y + 2.6)
-    p = pic(s, "Circle photo", "image6.png", L, y + 2.6, w=5.6)
+    p = pic(s, "Project photo 1", f"{PHOTOS}/foto1.jpg", L, y + 2.6, w=5.6)
     extra = 1 - Inches(ph) / p.height
-    p.crop_top = extra * 0.45; p.crop_bottom = extra * 0.55
+    p.crop_top = extra * 0.3; p.crop_bottom = extra * 0.7
     p.height = Inches(ph)
 
 
@@ -420,7 +421,7 @@ def build_s7(s, c):
     pw = (W - 0.3) / 2
     ph = 3.6
     pic(s, "Photo 1", "image5.jpg", L, y, w=pw)
-    pic(s, "Photo 2", "image4.jpg", L + pw + 0.3, y, w=pw)
+    pic(s, "Photo 2", f"{PHOTOS}/foto4.jpg", L + pw + 0.3, y, w=pw)
     # crop both to same height by adjusting crop
     for sh in s.shapes:
         if sh.name in ("Photo 1", "Photo 2"):
@@ -454,16 +455,13 @@ def build_s8(s, c):
 
 def build_s9(s, c):
     # slogan in the middle, the professor's four photos in the corners
-    pic(s, "Photo 1", f"{PHOTOS}/foto1.jpg", L, 1.45, w=3.3)
-    pic(s, "Photo 3", f"{PHOTOS}/foto3.jpg", L, 3.8, w=3.3)
-    pic(s, "Photo 2", f"{PHOTOS}/foto2.jpg", R - 3.0, 1.45, w=3.0)
-    pic(s, "Photo 4", f"{PHOTOS}/foto4.jpg", R - 3.0, 3.9, w=3.0)
-    cx0, cw0 = L + 3.55, W - 3.55 - 3.25
-    card(s, "Principle card", cx0, 1.9, cw0, 3.8, fill=CARD)
-    tb(s, "Line 1", cx0 + 0.2, 2.2, cw0 - 0.4, 1.3, [c["l1"]], size=32, color=BLUE, bold=True,
+    pic(s, "Project photo 2", f"{PHOTOS}/foto2.jpg", L, 1.6, w=5.6)
+    cx0, cw0 = L + 5.95, W - 5.95
+    card(s, "Principle card", cx0, 1.6, cw0, 4.2, fill=CARD)
+    tb(s, "Line 1", cx0 + 0.3, 1.9, cw0 - 0.6, 1.7, [c["l1"]], size=34, color=BLUE, bold=True,
        font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-    tb(s, "Line 2", cx0 + 0.2, 3.5, cw0 - 0.4, 1.9, [c["l2"]], size=32, color=GREEN, bold=True,
-       font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.TOP)
+    tb(s, "Line 2", cx0 + 0.3, 3.6, cw0 - 0.6, 2.0, [c["l2"]], size=34, color=GREEN, bold=True,
+       font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
 
 
 def build_s10(s, c):
@@ -493,8 +491,10 @@ def build_s11(s, c):
     for i, (hd, items, cw) in enumerate(cols):
         card(s, f"Col card {i+1}", x, y, cw, B - y)
         tb(s, f"Col head {i+1}", x + 0.25, y + 0.2, cw - 0.5, 0.4, [hd], size=13, bold=True, color=BLUE)
-        bullets(s, f"Col {i+1}", x + 0.25, y + 0.7, cw - 0.5, 3.0, items, size=13 if i else 15,
-                gap=5, dot=GREEN if i == 1 else BLUE)
+        bullets(s, f"Col {i+1}", x + 0.25, y + 0.7, cw - 0.5, 3.0, items, size=(13 if i else 15) * SC,
+                gap=5 if SC == 1 else 1, dot=GREEN if i == 1 else BLUE)
+        if i == 0:
+            pic(s, "Project photo 3", f"{PHOTOS}/foto3.jpg", x + 0.25, B - 0.25 - (cw - 0.5) * 612 / 856, w=cw - 0.5)
         x += cw + 0.215
 
 
@@ -535,7 +535,7 @@ def build_s13(s, c):
         card(s, f"Obj card {i+1}", x, yy, cw, ch)
         circle(s, f"Obj num {i+1}", x + 0.5, yy + 0.5, 0.56, fill=BLUE if i % 2 == 0 else GREEN,
                text=str(i + 1), size=16)
-        tb(s, f"Obj text {i+1}", x + 0.25, yy + 0.95, cw - 0.5, ch - 1.1, [it], size=15)
+        tb(s, f"Obj text {i+1}", x + 0.25, yy + 0.95 - (0.1 if SC < 1 else 0), cw - 0.5, ch - 0.8, [it], size=15 * SC)
 
 
 def build_s14(s, c):
@@ -555,7 +555,7 @@ def build_s14(s, c):
         tb(s, f"PDCA key {i+1}", x, yy, cw, 1.1, [k], size=22, color=WHITE, bold=True,
            font=HEAD_FONT, align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
         circle(s, f"PDCA letter {i+1}", x + cw / 2, yy + 1.55, 0.6, fill=colors[i], text=k[0], size=20)
-        tb(s, f"PDCA text {i+1}", x + 0.15, yy + 1.98, cw - 0.3, B - yy - 2.05, [v], size=13,
+        tb(s, f"PDCA text {i+1}", x + 0.15, yy + 1.98, cw - 0.3, B - yy - 2.05, [v], size=13 * SC,
            align=PP_ALIGN.CENTER)
 
 
@@ -569,7 +569,7 @@ def build_s15(s, c):
         pill(s, f"WP code {i+1}", x + 0.65, y + 0.4, 0.9, 0.42, code, fill=BLUE if i % 2 == 0 else GREEN, size=13)
         tb(s, f"WP name {i+1}", x + 0.2, y + 0.75, cw - 0.4, 0.9, [name], size=16, bold=True,
            color=BLUE, anchor=MSO_ANCHOR.MIDDLE)
-        bullets(s, f"WP {i+1}", x + 0.2, y + 1.85, cw - 0.4, 2.5, items, size=13, gap=5,
+        bullets(s, f"WP {i+1}", x + 0.2, y + 1.85, cw - 0.4, 2.5, items, size=13 * SC, gap=5 if SC == 1 else 2,
                 dot=GREEN if i % 2 == 0 else BLUE)
         if i < 3:
             ar = s.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, Inches(x + cw - 0.02), Inches(y + 0.47),
@@ -592,7 +592,7 @@ def build_s16(s, c):
         band.shadow.inherit = False
         tb(s, f"Eval head {i+1}", x + 0.2, y, cw - 0.4, 0.8, [hd], size=15, color=WHITE, bold=True,
            anchor=MSO_ANCHOR.MIDDLE, align=PP_ALIGN.CENTER)
-        bullets(s, f"Eval {i+1}", x + 0.25, y + 1.0, cw - 0.5, 3.0, items, size=14, gap=6, dot=fills[i])
+        bullets(s, f"Eval {i+1}", x + 0.25, y + 1.0, cw - 0.5, 3.0, items, size=14 * SC, gap=6 if SC == 1 else 2, dot=fills[i])
 
 
 def build_s17(s, c):
@@ -652,7 +652,42 @@ BUILDERS = {2: build_s2, 3: build_s3, 4: build_s4, 5: build_s5, 6: build_s6, 7: 
 LONG_HEADERS = 34
 
 
+def merge(en, tr):
+    """Zip the English and Turkish content trees into one tree of Bi strings."""
+    if isinstance(en, str):
+        return en if en == tr else Bi(en, tr)
+    if isinstance(en, dict):
+        return {k: merge(v, tr[k]) for k, v in en.items()}
+    if isinstance(en, (list, tuple)):
+        return type(en)(merge(a, b) for a, b in zip(en, tr))
+    return en
+
+
+C["bi"] = merge(C["en"], C["tr"])
+
+
+def bi_header(s):
+    """Second (Turkish) line in the header band."""
+    for sh in s.shapes:
+        if sh.has_text_frame and sh.top == Inches(0.18) and sh.height == Inches(0.7):
+            return sh
+    return None
+
+
+def add_tr_par(sh, text, size, rgb):
+    p = sh.text_frame.add_paragraph()
+    r = p.add_run(); r.text = text
+    r.font.size = Pt(size); r.font.bold = True; r.font.italic = True; r.font.color.rgb = rgb
+    r.font.name = HEAD_FONT
+    return p
+
+
+SC = 1.0   # text scale for dense slides (smaller in the bilingual deck)
+
+
 def build(lang, outfile):
+    global SC
+    SC = 0.86 if lang == "bi" else 1.0
     c = C[lang]
     prs = Presentation(BASE)
     slides = list(prs.slides)
@@ -661,11 +696,31 @@ def build(lang, outfile):
         fill_disclaimer(s, "Hayal Köksal ve İstanbul Kent Üniversitesi", "Hayal Köksal and Istanbul Kent University")
         if i == 1:
             build_title(s, c)
+            if lang == "bi":
+                for sh in s.shapes:
+                    if sh.has_text_frame and sh.text_frame.text.strip() == str(c["title"]):
+                        sh.text_frame.paragraphs[0].runs[0].font.size = Pt(36)
+                        sh.top = Inches(2.55)
+                    elif sh.has_text_frame and sh.text_frame.text.strip() == str(c["sub"]):
+                        sh.text_frame.paragraphs[0].runs[0].font.size = Pt(15)
+                        sh.top = Inches(3.75); sh.height = Inches(1.0)
+                        add_tr_par(sh, c["sub"].tr, 13, GREEN)
+                tb(s, "Title TR", 1.14, 3.15, 6.9, 0.55, [c["title"].tr], size=26, color=BLUE, bold=True,
+                   italic=True, font=HEAD_FONT, margin=0)
         elif i == 20:
             build_thanks(s, c["s20"])
+            if lang == "bi":
+                for sh in s.shapes:
+                    if sh.has_text_frame and sh.text_frame.text.strip() == str(c["s20"]["thanks"]):
+                        r = sh.text_frame.paragraphs[0].runs[0]
+                        r.text = f'{c["s20"]["thanks"]} · {c["s20"]["thanks"].tr}'; r.font.size = Pt(28)
         else:
             cc = c[f"s{i}"]
             set_header(s, cc["h"], size=24 if len(cc["h"]) <= LONG_HEADERS else 20)
+            if lang == "bi" and isinstance(cc["h"], Bi):
+                hd = bi_header(s)
+                hd.text_frame.paragraphs[0].runs[0].font.size = Pt(20 if len(cc["h"]) <= LONG_HEADERS else 17)
+                add_tr_par(hd, cc["h"].tr, 13, WHITE)
             BUILDERS[i](s, cc)
             footer_logo(s)
     # the slogan slide (built as slide 9) is shown last, just before the closing slide
@@ -679,3 +734,4 @@ def build(lang, outfile):
 
 build("en", f"{OUT}/COP31_Climate_IMECE_Hayal_Koksal_EN.pptx")
 build("tr", f"{OUT}/COP31_Iklim_Imecesi_Hayal_Koksal_TR.pptx")
+build("bi", f"{OUT}/COP31_Climate_IMECE_Hayal_Koksal_EN_TR.pptx")

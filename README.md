@@ -112,3 +112,8 @@ Hocanın mor vurguyla işaretlediği dosya `kaynak/revize/` altında, eklediği 
 altında. Tüm revizeler Türkçe ve İngilizce panel sunumuna işlendi. Slogan slaydı ("Kendinle Yarış,
 Başkalarıyla İş Birliği Yap") hocanın isteğiyle sona, kapanıştan hemen önceye alındı ve dört fotoğraf bu
 slayda yerleştirildi.
+
+İkinci tur (aynı gün): hocanın isteğiyle İngilizce ve Türkçenin aynı slaytta yer aldığı iki dilli sürüm eklendi
+(`sunum/COP31_Climate_IMECE_Hayal_Koksal_EN_TR.pptx`; İngilizce üstte, Türkçe altında italik). Dört fotoğraftan
+üçü başka slaytlara dağıtıldı: "İMECE nedir", "İMECE'nin gücü" ve "Ortaklar"; biri slogan slaydında kaldı.
+Sorumluluk metni "Hayal Köksal ve İstanbul Kent Üniversitesi" olarak güncellendi.
