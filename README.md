@@ -10,6 +10,7 @@
 | `sablonlar/` | COP31'in resmî sunum ve dijital poster şablonları |
 | `sunum/` | Mevcut sunum (`COP31_PROJECT_by_HAYAL_KOKSAL.pptx`) ve revizeleri |
 | `poster/` | Poster revizeleri |
+| `logolar/` | İstanbul Kent Üniversitesi logoları (PNG, şeffaf zemin; dört renk varyantı) |
 
 ## Çalışma düzeni
 
